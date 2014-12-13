@@ -7,7 +7,7 @@ import android.test.InstrumentationTestCase;
  */
 public class HttpHandlerTest extends InstrumentationTestCase {
 
-    public void TestHttpHandler() throws Exception {
+    public void testHttpHandler() {
         String url = "http://ip.jsontest.com/?callback=showMyIP";
         String result = "showMyIP({\"ip\": \"5.13.182.219\"});";
 
