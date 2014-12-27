@@ -1,0 +1,102 @@
+{
+   "local":[
+      {
+         "id":24340,
+         "lat":"45.606900",
+         "lng":"26.353400",
+         "depth":113,
+         "intensity":null,
+         "magnitude":2.4,
+         "time":1419641199,
+         "region":"Zona seismica Vrancea, judetul Buzau",
+         "mag_type":null,
+         "is_pref":true,
+         "type":"500",
+         "created_at":"2014-12-27 05:15:22",
+         "has_extra":null,
+         "dt_rom":"2014-12-27 02:46:39"
+      },
+      {
+         "id":24331,
+         "lat":"45.415800",
+         "lng":"26.309700",
+         "depth":134,
+         "intensity":1,
+         "magnitude":3.5,
+         "time":1419547288,
+         "region":"Zona seismica Vrancea, judetul Buzau",
+         "mag_type":null,
+         "is_pref":true,
+         "type":"500",
+         "created_at":"2014-12-26 01:19:15",
+         "has_extra":null,
+         "dt_rom":"2014-12-26 00:41:28"
+      },
+      {
+         "id":24329,
+         "lat":"45.704100",
+         "lng":"26.627000",
+         "depth":129,
+         "intensity":null,
+         "magnitude":3.4,
+         "time":1419539582,
+         "region":"Zona seismica Vrancea, judetul Vrancea",
+         "mag_type":null,
+         "is_pref":true,
+         "type":"500",
+         "created_at":"2014-12-25 23:15:46",
+         "has_extra":null,
+         "dt_rom":"2014-12-25 22:33:02"
+      },
+      {
+         "id":24328,
+         "lat":"43.442100",
+         "lng":"20.813100",
+         "depth":16,
+         "intensity":null,
+         "magnitude":2.5,
+         "time":1419528150,
+         "region":"Serbia",
+         "mag_type":null,
+         "is_pref":true,
+         "type":"500",
+         "created_at":"2014-12-25 22:45:43",
+         "has_extra":null,
+         "dt_rom":"2014-12-25 19:22:30"
+      },
+      {
+         "id":24320,
+         "lat":"43.817800",
+         "lng":"21.660600",
+         "depth":12,
+         "intensity":null,
+         "magnitude":2.3,
+         "time":1419466550,
+         "region":"Serbia",
+         "mag_type":null,
+         "is_pref":true,
+         "type":"500",
+         "created_at":"2014-12-25 05:57:36",
+         "has_extra":null,
+         "dt_rom":"2014-12-25 02:15:50"
+      }
+   ],
+   "global":[
+      {
+         "id":24336,
+         "lat":"46.682000",
+         "lng":"99.999999",
+         "depth":15,
+         "intensity":null,
+         "magnitude":5.2,
+         "time":1419592641,
+         "region":"NORTHWEST OF KURIL ISLANDS",
+         "mag_type":null,
+         "is_pref":true,
+         "type":"400",
+         "created_at":"2014-12-26 13:32:27",
+         "has_extra":null,
+         "dt_rom":"2014-12-26 13:17:21"
+      }
+   ]
+}
