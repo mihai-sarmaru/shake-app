@@ -12,11 +12,22 @@ import java.net.URLConnection;
  */
 public class HttpHandler {
 
-    public HttpHandler() {}
+    private String _url;
 
-    public String getJsonString(String url) {
+    public HttpHandler(String url) {
+        this._url = url;
+    }
+
+    public String getUrl() {
+        return _url;
+    }
+    public void setUrl(String url) {
+        this._url = url;
+    }
+
+    public String getJsonString() {
         try {
-            URL uri = new URL(url);
+            URL uri = new URL(_url);
             URLConnection urlConnection = uri.openConnection();
             BufferedReader reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream(), "UTF-8"));
 
