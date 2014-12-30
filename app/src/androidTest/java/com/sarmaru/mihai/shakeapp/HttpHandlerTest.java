@@ -7,13 +7,22 @@ import android.test.InstrumentationTestCase;
  */
 public class HttpHandlerTest extends InstrumentationTestCase {
 
-    public void testHttpHandler() {
-        String url = "http://ip.jsontest.com/?callback=showMyIP";
-        String result = "showMyIP";
+    private static final String URL = "http://ip.jsontest.com/?callback=showMyIP";
+    private static final String RESULT = "showMyIP";
+    private static final String TEST_URL = "test";
 
-        HttpHandler handler = new HttpHandler();
-        String json = handler.getJsonString(url).substring(0, 8);
-        assertEquals(json, result);
+    public void testHttpHandlerConstructor () {
+        HttpHandler handler = new HttpHandler(TEST_URL);
+        assertEquals(TEST_URL, handler.getUrl());
+
+        handler.setUrl(URL);
+        assertEquals(URL, handler.getUrl());
+    }
+
+    public void testHttpHandlerGetJson() {
+        HttpHandler handler = new HttpHandler(URL);
+        String json = handler.getJsonString().substring(0, 8);
+        assertEquals(json, RESULT);
     }
 
 }
