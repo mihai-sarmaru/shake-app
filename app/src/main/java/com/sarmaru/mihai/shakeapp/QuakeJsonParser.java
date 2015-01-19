@@ -82,6 +82,21 @@ public class QuakeJsonParser {
         }
     }
 
+    public QuakeObject getLatestQuake () {
+        JSONArray jsonArray = getJsonArray();
+        try {
+            if (jsonArray != null) {
+                return getQuakeObjectFromJson(jsonArray.getJSONObject(0));
+            } else {
+                return null;
+            }
+        } catch (Exception e) {
+            Log.d("JSON", "Failed getting latest quake from JSON");
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     private JSONArray getJsonArray() {
         try {
             JSONObject json = new JSONObject(_jsonString);
