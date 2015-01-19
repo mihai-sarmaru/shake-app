@@ -20,4 +20,8 @@ public class UtilsTest extends InstrumentationTestCase {
         String expectedTime = "09:04:38";
         assertEquals(formattedTime, expectedTime);
     }
+
+    public void testServiceNotRunning () {
+        assertEquals(false, Utils.isServiceRunning(getInstrumentation().getTargetContext(), ShakeAppService.class));
+    }
 }
