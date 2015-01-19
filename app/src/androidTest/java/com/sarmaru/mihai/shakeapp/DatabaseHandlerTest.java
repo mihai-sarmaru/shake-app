@@ -17,6 +17,8 @@ public class DatabaseHandlerTest extends InstrumentationTestCase {
     private long time = 1419641199;
     private String region = "Zona seismica Vrancea, judetul Buzau";
 
+    private int latestQuakeId = 24342;
+
     public void testDatabaseHandlerInsertQuake () {
         DatabaseHandler db = new DatabaseHandler(getInstrumentation().getTargetContext());
         long insertedId = db.insertQuakeObject(createQuakeObject());
@@ -49,6 +51,13 @@ public class DatabaseHandlerTest extends InstrumentationTestCase {
         db.insertQuakeObject(createQuakeObject());
         List<QuakeObject> quakeList = db.getQuakeList();
         assertTrue(quakeList.size() > 0);
+    }
+
+    public void testDatabaseHandlerLatestQuake () {
+        DatabaseHandler db = new DatabaseHandler(getInstrumentation().getTargetContext());
+        db.insertQuakeObject(new QuakeObject(latestQuakeId, lat, lng, depth, magnitude, time, region));
+        QuakeObject quake = db.getLatestQuakeObject();
+        assertEquals(quake.getId(), latestQuakeId);
     }
 
     public void testDatabaseHandlerClearAllQuakes () {

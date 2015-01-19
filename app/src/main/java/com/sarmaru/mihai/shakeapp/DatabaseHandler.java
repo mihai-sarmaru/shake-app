@@ -67,6 +67,15 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return null;
     }
 
+    public QuakeObject getLatestQuakeObject () {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " ORDER BY " + KEY_UID + " DESC LIMIT 1", null);
+        if (cursor.moveToFirst()) {
+            return getQuakeObjectFromCursor(cursor);
+        }
+        return null;
+    }
+
     public List<QuakeObject> getQuakeList () {
         List<QuakeObject> quakeList = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
