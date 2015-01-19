@@ -2,6 +2,7 @@ package com.sarmaru.mihai.shakeapp;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.util.Log;
 
 import java.util.List;
 
@@ -17,20 +18,30 @@ public class ShakeAppService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        HttpHandler handler = new HttpHandler("LINK GOES HERE");
+        DatabaseHandler db = new DatabaseHandler(getApplicationContext());
+
+        // TODO Pass server link through parameter
+        HttpHandler handler = new HttpHandler("HTTP LINK");
         QuakeJsonParser parser = new QuakeJsonParser(handler.getJsonString());
         List<QuakeObject> quakeList = parser.parseQuakeList();
 
-        // TODO Check if there are new events
-
-        insertQuakesIntoDatabase(quakeList);
+        if (db.getQuakeCount() > 0) {
+            // Check if there are new quake events
+            if (parser.getLatestQuake().getId() != db.getLatestQuakeObject().getId()) {
+                insertQuakesIntoDatabase(db, quakeList);
+            }
+        } else {
+            insertQuakesIntoDatabase(db, quakeList);
+        }
     }
 
-    private void insertQuakesIntoDatabase(List<QuakeObject> quakeList) {
-        DatabaseHandler db = new DatabaseHandler(getApplicationContext());
-        db.clearAllQuakes();
-        for (QuakeObject quake : quakeList) {
-            db.insertQuakeObject(quake);
+    private void insertQuakesIntoDatabase(DatabaseHandler db, List<QuakeObject> quakeList) {
+        if (db.clearAllQuakes()) {
+            for (QuakeObject quake : quakeList) {
+                db.insertQuakeObject(quake);
+            }
+        } else {
+            Log.d("SERVICE", "Database was not cleared.");
         }
     }
 }
