@@ -2,7 +2,14 @@ package com.sarmaru.mihai.shakeapp;
 
 import android.app.ActivityManager;
 import android.content.Context;
+import android.util.Base64;
+import android.util.Log;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -31,5 +38,37 @@ public class Utils {
             }
         }
         return false;
+    }
+
+    public static String getServerUrl (Context context) {
+        byte[] data = Base64.decode(getUrlFromAsset(context), Base64.DEFAULT);
+        try {
+            return new String(data, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    private static String getUrlFromAsset (Context context) {
+        try {
+            InputStream inputStream = context.getAssets().open("url.txt");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+
+            String inputLine;
+            StringBuilder builder = new StringBuilder();
+
+            while ((inputLine = reader.readLine()) != null) {
+                builder.append(inputLine);
+            }
+
+            reader.close();
+            return builder.toString();
+
+        } catch (IOException e) {
+            Log.d("UTILS", "Getting URL from assets failed.");
+            e.printStackTrace();
+            return null;
+        }
     }
 }

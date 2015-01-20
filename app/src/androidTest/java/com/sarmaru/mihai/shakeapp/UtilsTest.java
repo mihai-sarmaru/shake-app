@@ -8,6 +8,7 @@ import android.test.InstrumentationTestCase;
 public class UtilsTest extends InstrumentationTestCase {
 
     private long millis = 1418454278;
+    private int urlLength = 42;
 
     public void testFormatDate () {
         String formattedDate = Utils.formatDate(millis * 1000);
@@ -21,7 +22,7 @@ public class UtilsTest extends InstrumentationTestCase {
         assertEquals(formattedTime, expectedTime);
     }
 
-    public void testServiceNotRunning () {
-        assertEquals(false, Utils.isServiceRunning(getInstrumentation().getTargetContext(), ShakeAppService.class));
+    public void testServerUrl () {
+        assertEquals(Utils.getServerUrl(getInstrumentation().getTargetContext()).length(), urlLength);
     }
 }
