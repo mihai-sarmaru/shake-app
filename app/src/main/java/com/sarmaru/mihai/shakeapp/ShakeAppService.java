@@ -11,6 +11,8 @@ import java.util.List;
  */
 public class ShakeAppService extends IntentService {
 
+    private static String URL_KEY = "url";
+
     // super(name) - Used to name the worker thread, important only for debugging
     public ShakeAppService() {
         super("ShakeAppThread");
@@ -20,8 +22,7 @@ public class ShakeAppService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         DatabaseHandler db = new DatabaseHandler(getApplicationContext());
 
-        // TODO Pass server link through parameter
-        HttpHandler handler = new HttpHandler("HTTP LINK");
+        HttpHandler handler = new HttpHandler(intent.getExtras().getString(URL_KEY));
         QuakeJsonParser parser = new QuakeJsonParser(handler.getJsonString());
         List<QuakeObject> quakeList = parser.parseQuakeList();
 
