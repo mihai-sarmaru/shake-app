@@ -9,7 +9,6 @@ public class ShakeAppPreferencesTest extends InstrumentationTestCase {
 
     public void testServicePreferences () {
         ShakeAppPreferences prefs = new ShakeAppPreferences(getInstrumentation().getTargetContext());
-        assertEquals(false, prefs.isServiceDone());
 
         prefs.setServiceDone(true);
         assertEquals(true, prefs.isServiceDone());
