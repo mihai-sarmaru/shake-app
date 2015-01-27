@@ -14,9 +14,12 @@ public class ConnectionChangeReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (isConnectedToInternet(intent)) {
-            // TODO Start Service
-        } else {
-            // TODO Stop Service
+            if (!Utils.isServiceRunning(context, ShakeAppService.class)) {
+                Intent serviceIntent = new Intent(context, ShakeAppService.class);
+                serviceIntent.putExtra("url", Utils.getServerUrl(context));
+                context.startService(serviceIntent);
+                Log.d("BROADCAST", "Shake App service started...");
+            }
         }
     }
 

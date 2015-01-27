@@ -49,6 +49,13 @@ public class QuakeJsonParserTest extends InstrumentationTestCase {
         assertEquals(quake.getRegion(), region);
     }
 
+    public void testLatestQuakeParser() {
+        QuakeJsonParser jsonParser = getQuakeJsonParser();
+        QuakeObject quake = jsonParser.getLatestQuake();
+
+        assertEquals(quake.getId(), id);
+    }
+
     public void testQuakeParserList () {
         QuakeJsonParser jsonParser = getQuakeJsonParser();
         List<QuakeObject> quakeList = jsonParser.parseQuakeList();

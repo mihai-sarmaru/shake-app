@@ -8,6 +8,7 @@ import android.test.InstrumentationTestCase;
 public class UtilsTest extends InstrumentationTestCase {
 
     private long millis = 1418454278;
+    private int urlLength = 42;
 
     public void testFormatDate () {
         String formattedDate = Utils.formatDate(millis * 1000);
@@ -19,5 +20,9 @@ public class UtilsTest extends InstrumentationTestCase {
         String formattedTime = Utils.formatTime(millis * 1000);
         String expectedTime = "09:04:38";
         assertEquals(formattedTime, expectedTime);
+    }
+
+    public void testServerUrl () {
+        assertEquals(Utils.getServerUrl(getInstrumentation().getTargetContext()).length(), urlLength);
     }
 }
