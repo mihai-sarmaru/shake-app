@@ -41,8 +41,14 @@ public class ShakeAppService extends IntentService {
             for (QuakeObject quake : quakeList) {
                 db.insertQuakeObject(quake);
             }
+            serviceDone();
         } else {
             Log.d("SERVICE", "Database was not cleared.");
         }
+    }
+
+    private void serviceDone () {
+        ShakeAppPreferences prefs = new ShakeAppPreferences(getApplicationContext());
+        prefs.setServiceDone(true);
     }
 }

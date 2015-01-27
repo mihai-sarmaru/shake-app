@@ -11,6 +11,9 @@ import java.io.IOException;
 public class ShakeAppServiceTest extends InstrumentationTestCase {
 
     public void testShakeAppService () throws IOException {
+        ShakeAppPreferences prefs = new ShakeAppPreferences(getInstrumentation().getTargetContext());
+        assertEquals(false, prefs.isServiceDone());
+
         Intent serviceIntent = new Intent(getInstrumentation().getTargetContext(), ShakeAppService.class);
         serviceIntent.putExtra("url", Utils.getServerUrl(getInstrumentation().getTargetContext()));
         getInstrumentation().getTargetContext().startService(serviceIntent);
@@ -26,6 +29,7 @@ public class ShakeAppServiceTest extends InstrumentationTestCase {
         }
 
         assertEquals(false, Utils.isServiceRunning(getInstrumentation().getTargetContext(), ShakeAppService.class));
+        assertEquals(true, prefs.isServiceDone());
 
         DatabaseHandler db = new DatabaseHandler(getInstrumentation().getTargetContext());
         assertTrue(db.getQuakeCount() > 0);
