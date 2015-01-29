@@ -15,6 +15,9 @@ public class ShakeAppPreferences {
     private static final String PREF_SERVICE = "service";
     private static final boolean PREF_DEFAULT_SERVICE = false;
 
+    private static final String PREF_DATABASE_LATEST_ID = "databaseLatestId";
+    private static final int PREF_DEFAULT_DATABASE_LATEST_ID = 0;
+
     public ShakeAppPreferences (Context context) {
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
     }
@@ -25,5 +28,13 @@ public class ShakeAppPreferences {
 
     public void setServiceDone (boolean done) {
         prefs.edit().putBoolean(PREF_SERVICE, done).apply();
+    }
+
+    public int getLatestDatabaseId () {
+        return prefs.getInt(PREF_DATABASE_LATEST_ID, PREF_DEFAULT_DATABASE_LATEST_ID);
+    }
+
+    public void setLatestDatabaseId (int latestId) {
+        prefs.edit().putInt(PREF_DATABASE_LATEST_ID, latestId).apply();
     }
 }
