@@ -26,13 +26,17 @@ public class ShakeAppService extends IntentService {
         QuakeJsonParser parser = new QuakeJsonParser(handler.getJsonString());
         List<QuakeObject> quakeList = parser.parseQuakeList();
 
+        int latestDatabaseQuakeId = db.getQuakeCount() > 0 ? db.getLatestQuakeObject().getId() : 0;
+
         if (db.getQuakeCount() > 0) {
             // Check if there are new quake events
             if (parser.getLatestQuake().getId() != db.getLatestQuakeObject().getId()) {
                 insertQuakesIntoDatabase(db, quakeList);
+                retainLatestQuakeId(latestDatabaseQuakeId);
             }
         } else {
             insertQuakesIntoDatabase(db, quakeList);
+            retainLatestQuakeId(latestDatabaseQuakeId);
         }
     }
 
@@ -50,5 +54,10 @@ public class ShakeAppService extends IntentService {
     private void serviceDone () {
         ShakeAppPreferences prefs = new ShakeAppPreferences(getApplicationContext());
         prefs.setServiceDone(true);
+    }
+
+    private void retainLatestQuakeId (int latestId) {
+        ShakeAppPreferences prefs = new ShakeAppPreferences(getApplicationContext());
+        prefs.setLatestDatabaseId(latestId);
     }
 }
