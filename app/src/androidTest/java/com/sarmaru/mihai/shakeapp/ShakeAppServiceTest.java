@@ -14,6 +14,9 @@ public class ShakeAppServiceTest extends InstrumentationTestCase {
         ShakeAppPreferences prefs = new ShakeAppPreferences(getInstrumentation().getTargetContext());
         assertEquals(false, prefs.isServiceDone());
 
+        DatabaseHandler db = new DatabaseHandler(getInstrumentation().getTargetContext());
+        int latestId = db.getQuakeCount() > 0 ? db.getLatestQuakeObject().getId() : 0;
+
         Intent serviceIntent = new Intent(getInstrumentation().getTargetContext(), ShakeAppService.class);
         serviceIntent.putExtra("url", Utils.getServerUrl(getInstrumentation().getTargetContext()));
         getInstrumentation().getTargetContext().startService(serviceIntent);
@@ -31,7 +34,7 @@ public class ShakeAppServiceTest extends InstrumentationTestCase {
         assertEquals(false, Utils.isServiceRunning(getInstrumentation().getTargetContext(), ShakeAppService.class));
         assertEquals(true, prefs.isServiceDone());
 
-        DatabaseHandler db = new DatabaseHandler(getInstrumentation().getTargetContext());
         assertTrue(db.getQuakeCount() > 0);
+        assertTrue(db.getLatestQuakeObject().getId() > latestId);
     }
 }
