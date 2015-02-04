@@ -19,6 +19,10 @@ public class CircleColorView extends View {
     private String circleText;
     private Paint paint;
 
+    public CircleColorView (Context context) {
+        this(context, null);
+    }
+
     public CircleColorView(Context context, AttributeSet attrs) {
         super(context, attrs);
         paint = new Paint();
