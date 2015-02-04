@@ -13,4 +13,8 @@
     <color name="green">#4CAF50</color>
     <color name="red">#F44336</color>
 
+    <!-- New Quakes Layout Colors -->
+    <color name="new_green">#8BC34A</color>
+    <color name="new_white">#FFFFFF</color>
+
 </resources>
