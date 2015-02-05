@@ -12,10 +12,10 @@ import android.view.View;
  */
 public class CircleColorView extends View {
 
-    private static final int TEXT_SIZE = 50;
+    private static final int TEXT_SIZE = 10;
     private static final int PADDING = 10;
 
-    private int circleColor, labelColor;
+    private int circleColor, labelColor, labelTextSize;
     private String circleText;
     private Paint paint;
 
@@ -33,6 +33,7 @@ public class CircleColorView extends View {
             circleColor = typedArray.getInteger(R.styleable.CircleColorView_circleColor, 0);
             labelColor = typedArray.getInteger(R.styleable.CircleColorView_labelColor, 0);
             circleText = typedArray.getString(R.styleable.CircleColorView_labelText);
+            labelTextSize = typedArray.getInteger(R.styleable.CircleColorView_labelTextSize, TEXT_SIZE);
         } finally {
             typedArray.recycle();
         }
@@ -54,9 +55,10 @@ public class CircleColorView extends View {
 
         paint.setColor(labelColor);
         paint.setTextAlign(Paint.Align.CENTER);
-        paint.setTextSize(TEXT_SIZE);
+        paint.setTextSize(labelTextSize);
 
-        canvas.drawText(circleText, viewHalfWidth, viewHalfHeight, paint);
+        int textCyPosition = viewHalfHeight + labelTextSize / 3;
+        canvas.drawText(circleText, viewHalfWidth, textCyPosition, paint);
     }
 
     public int getCircleColor () {
