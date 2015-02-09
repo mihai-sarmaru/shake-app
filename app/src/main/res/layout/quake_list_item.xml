@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginBottom="@dimen/linear_layout_margin_bottom"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.sarmaru.mihai.shakeapp.CircleColorView
+        android:id="@+id/magnitude_circle_color_view"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:circleColor="@color/new_green"
+        app:labelColor="@color/new_white"
+        app:labelTextSize="@integer/label_text_size"
+        app:labelText="2.7" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/linear_layout_margin"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/regionTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/linear_layout_margin_top"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/dateTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/date_time_margin_right" />
+
+            <TextView
+                android:id="@+id/timeTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/date_time_margin_right" />
+
+            <TextView
+                android:id="@+id/newTV"
+                android:background="@color/new_green"
+                android:textColor="@color/new_white"
+                android:paddingLeft="@dimen/new_padding_lef_right"
+                android:paddingRight="@dimen/new_padding_lef_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/list_item_new"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?android:attr/selectableItemBackground" />
+
+</FrameLayout>
