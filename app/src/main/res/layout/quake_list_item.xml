@@ -7,19 +7,17 @@
 
     <com.sarmaru.mihai.shakeapp.CircleColorView
         android:id="@+id/magnitude_circle_color_view"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="15dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         app:circleColor="@color/new_green"
         app:labelColor="@color/new_white"
-        app:labelTextSize="30"
+        app:labelTextSize="@integer/label_text_size"
         app:labelText="2.7" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/linear_layout_margin"
-        android:layout_marginBottom="@dimen/linear_layout_margin"
+        android:layout_marginBottom="@dimen/linear_layout_margin_bottom"
         android:layout_marginLeft="@dimen/linear_layout_margin"
         android:orientation="vertical">
 
