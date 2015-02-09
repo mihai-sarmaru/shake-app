@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -44,18 +45,27 @@ public class QuakeListAdapter extends RecyclerView.Adapter<QuakeListAdapter.View
         return quakeList.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView regionTV, dateTV, timeTV, newTV;
         public CircleColorView magnitudeView;
 
         public ViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
+
             regionTV = (TextView) itemView.findViewById(R.id.regionTV);
             dateTV = (TextView) itemView.findViewById(R.id.dateTV);
             timeTV = (TextView) itemView.findViewById(R.id.timeTV);
             newTV = (TextView) itemView.findViewById(R.id.newTV);
             magnitudeView = (CircleColorView) itemView.findViewById(R.id.magnitude_circle_color_view);
+        }
+
+        @Override
+        public void onClick(View v) {
+
+            // TODO: OnCLick Intent action
+            Toast.makeText(v.getContext(), "Position: " + getPosition(), Toast.LENGTH_SHORT).show();
         }
     }
 }
