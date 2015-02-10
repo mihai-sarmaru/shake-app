@@ -30,16 +30,16 @@
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="50sp"
-            android:text="icon"/>
+            android:textSize="@dimen/fetching_icon_size"
+            android:text="@string/fetching_icon_text"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/wait_icon_tv"
-            android:textSize="32sp"
-            android:text="FETCHING EVENTS"/>
+            android:textSize="@dimen/fetching_text_size"
+            android:text="@string/fetching_events_text"/>
 
     </RelativeLayout>
 

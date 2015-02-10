@@ -1,6 +1,7 @@
 package com.sarmaru.mihai.shakeapp;
 
 import android.content.IntentFilter;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -12,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +52,9 @@ public class MainActivity extends ActionBarActivity {
         quakeRecyclerView.setLayoutManager(layoutManager);
 
         loadingLayout = (RelativeLayout) findViewById(R.id.getting_quakes_layout);
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fontawesome-webfont.ttf");
+        TextView iconTV = (TextView) findViewById(R.id.wait_icon_tv);
+        iconTV.setTypeface(typeface);
 
         new GetQuakeAsync().execute();
     }
