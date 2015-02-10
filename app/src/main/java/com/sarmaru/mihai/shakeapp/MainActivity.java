@@ -29,6 +29,13 @@ public class MainActivity extends ActionBarActivity {
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.main_swipe_refresh);
         swipeRefreshLayout.setColorSchemeResources(R.color.blue, R.color.yellow, R.color.green, R.color.red);
 
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new GetQuakeAsync().execute();
+            }
+        });
+
         // Register receiver to check for Internet connection
         registerReceiver(new ConnectionChangeReceiver(),
                 new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
