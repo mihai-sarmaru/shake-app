@@ -39,8 +39,10 @@ public class QuakeListAdapter extends RecyclerView.Adapter<QuakeListAdapter.View
         viewHolder.dateTV.setText(Utils.formatDate(quakeList.get(i).getTime()));
         viewHolder.timeTV.setText(Utils.formatTime(quakeList.get(i).getTime()));
 
-        // TODO - Check visibility
-        viewHolder.newTV.setVisibility(View.VISIBLE);
+        ShakeAppPreferences prefs = new ShakeAppPreferences(context);
+        if (prefs.getLatestDatabaseId() > 0 && quakeList.get(i).getId() > prefs.getLatestDatabaseId()) {
+            viewHolder.newTV.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
