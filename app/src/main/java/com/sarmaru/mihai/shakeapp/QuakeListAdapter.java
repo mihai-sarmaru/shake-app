@@ -1,5 +1,6 @@
 package com.sarmaru.mihai.shakeapp;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,9 +16,11 @@ import java.util.List;
 public class QuakeListAdapter extends RecyclerView.Adapter<QuakeListAdapter.ViewHolder> {
 
     private List<QuakeObject> quakeList;
+    private static Context context;
 
-    public QuakeListAdapter (List<QuakeObject> quakeObjectList) {
+    public QuakeListAdapter (List<QuakeObject> quakeObjectList, Context appContext) {
         this.quakeList = quakeObjectList;
+        context = appContext;
     }
 
     @Override
@@ -29,7 +32,7 @@ public class QuakeListAdapter extends RecyclerView.Adapter<QuakeListAdapter.View
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
-        // TODO - Add Circle color
+        viewHolder.magnitudeView.setCircleColor(getMagnitudeColor(quakeList.get(i).getMagnitude()));
         viewHolder.magnitudeView.setCircleText(String.valueOf(quakeList.get(i).getMagnitude()));
 
         viewHolder.regionTV.setText(quakeList.get(i).getRegion());
@@ -67,5 +70,23 @@ public class QuakeListAdapter extends RecyclerView.Adapter<QuakeListAdapter.View
             // TODO: OnCLick Intent action
             Toast.makeText(v.getContext(), "Position: " + getPosition(), Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private static int getMagnitudeColor (double magnitude) {
+        int magnitudeColor = context.getResources().getColor(R.color.magnitude_default);
+        if (magnitude >= 2 && magnitude < 3) {
+            magnitudeColor = context.getResources().getColor(R.color.magnitude_2);
+        } else if (magnitude >= 3 && magnitude < 4) {
+            magnitudeColor = context.getResources().getColor(R.color.magnitude_3);
+        } else if (magnitude >= 4 && magnitude < 5) {
+            magnitudeColor = context.getResources().getColor(R.color.magnitude_4);
+        } else if (magnitude >= 5 && magnitude < 6) {
+            magnitudeColor = context.getResources().getColor(R.color.magnitude_5);
+        } else if (magnitude >= 6 && magnitude < 7) {
+            magnitudeColor = context.getResources().getColor(R.color.magnitude_6);
+        } else {
+            magnitudeColor = context.getResources().getColor(R.color.magnitude_7);
+        }
+        return magnitudeColor;
     }
 }
