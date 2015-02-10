@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +38,13 @@ public class MainActivity extends ActionBarActivity {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                new GetQuakeAsync().execute();
+                if (Utils.isNetworkAvailable(getApplicationContext())) {
+                    new GetQuakeAsync().execute();
+                } else {
+                    swipeRefreshLayout.setRefreshing(false);
+                    Toast.makeText(getApplicationContext(), getString(R.string.toast_no_internet),
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -80,11 +87,13 @@ public class MainActivity extends ActionBarActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
-            while (Utils.isServiceRunning(getApplicationContext(), ShakeAppService.class)) {
-                try {
-                    Thread.sleep(200);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
+            if (Utils.isNetworkAvailable(getApplicationContext())) {
+                while (Utils.isServiceRunning(getApplicationContext(), ShakeAppService.class)) {
+                    try {
+                        Thread.sleep(200);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
                 }
             }
 

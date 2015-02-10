@@ -7,5 +7,6 @@
     <string name="list_item_new">NEW</string>
     <string name="fetching_events_text">FETCHING EVENTS</string>
     <string name="fetching_icon_text"></string>
+    <string name="toast_no_internet">No Internet connection</string>
 
 </resources>
