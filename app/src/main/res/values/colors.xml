@@ -17,4 +17,12 @@
     <color name="new_green">#8BC34A</color>
     <color name="new_white">#FFFFFF</color>
 
+    <!-- Quakes Magnitude Colors -->
+    <color name="magnitude_default">#2196F3</color>
+    <color name="magnitude_2">#8BC34A</color>
+    <color name="magnitude_3">#CDDC39</color>
+    <color name="magnitude_4">#FFC107</color>
+    <color name="magnitude_5">#FF9800</color>
+    <color name="magnitude_6">#FF5722</color>
+    <color name="magnitude_7">#F44336</color>
 </resources>
