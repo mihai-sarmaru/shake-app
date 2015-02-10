@@ -98,7 +98,7 @@ public class MainActivity extends ActionBarActivity {
             }
 
             DatabaseHandler db = new DatabaseHandler(getApplicationContext());
-            adapter = new QuakeListAdapter(db.getQuakeList());
+            adapter = new QuakeListAdapter(db.getQuakeList(), getApplicationContext());
             return null;
         }
 
