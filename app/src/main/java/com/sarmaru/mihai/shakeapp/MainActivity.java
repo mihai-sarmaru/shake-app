@@ -10,6 +10,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +20,7 @@ import java.util.List;
 public class MainActivity extends ActionBarActivity {
 
     SwipeRefreshLayout swipeRefreshLayout;
+    RelativeLayout loadingLayout;
     RecyclerView quakeRecyclerView;
     RecyclerView.Adapter adapter;
 
@@ -45,6 +48,8 @@ public class MainActivity extends ActionBarActivity {
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         quakeRecyclerView.setLayoutManager(layoutManager);
+
+        loadingLayout = (RelativeLayout) findViewById(R.id.getting_quakes_layout);
 
         new GetQuakeAsync().execute();
     }
@@ -89,6 +94,8 @@ public class MainActivity extends ActionBarActivity {
             if (adapter != null) {
                 quakeRecyclerView.setAdapter(adapter);
             }
+            loadingLayout.setVisibility(View.GONE);
+            quakeRecyclerView.setVisibility(View.VISIBLE);
             swipeRefreshLayout.setRefreshing(false);
         }
     }
