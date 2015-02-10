@@ -19,6 +19,7 @@ public class MainActivity extends ActionBarActivity {
 
     SwipeRefreshLayout swipeRefreshLayout;
     RecyclerView quakeRecyclerView;
+    RecyclerView.Adapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,8 @@ public class MainActivity extends ActionBarActivity {
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         quakeRecyclerView.setLayoutManager(layoutManager);
+
+        new GetQuakeAsync().execute();
     }
 
     @Override
@@ -54,5 +57,32 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private class GetQuakeAsync extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            while (Utils.isServiceRunning(getApplicationContext(), ShakeAppService.class)) {
+                try {
+                    Thread.sleep(200);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+
+            DatabaseHandler db = new DatabaseHandler(getApplicationContext());
+            adapter = new QuakeListAdapter(db.getQuakeList());
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            if (adapter != null) {
+                quakeRecyclerView.setAdapter(adapter);
+            }
+            swipeRefreshLayout.setRefreshing(false);
+        }
     }
 }
