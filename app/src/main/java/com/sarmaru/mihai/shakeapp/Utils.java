@@ -2,6 +2,7 @@ package com.sarmaru.mihai.shakeapp;
 
 import android.app.ActivityManager;
 import android.content.Context;
+import android.net.ConnectivityManager;
 import android.util.Base64;
 import android.util.Log;
 
@@ -28,6 +29,10 @@ public class Utils {
         Date dateTime = new Date(time);
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
         return timeFormat.format(dateTime);
+    }
+
+    public static boolean isNetworkAvailable(Context context) {
+        return ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo() != null;
     }
 
     public static boolean isServiceRunning(Context context, Class<?> serviceClass) {
