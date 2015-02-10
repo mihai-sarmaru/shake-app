@@ -22,6 +22,10 @@ public class UtilsTest extends InstrumentationTestCase {
         assertEquals(formattedTime, expectedTime);
     }
 
+    public void testInternetConnection () {
+        assertEquals(true, Utils.isNetworkAvailable(getInstrumentation().getTargetContext()));
+    }
+
     public void testServerUrl () {
         assertEquals(Utils.getServerUrl(getInstrumentation().getTargetContext()).length(), urlLength);
     }

@@ -2,8 +2,11 @@
 <resources>
 
     <string name="app_name">ShakeApp</string>
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
     <string name="list_item_new">NEW</string>
+    <string name="fetching_events_text">FETCHING EVENTS</string>
+    <string name="fetching_icon_text"></string>
+    <string name="toast_no_internet">No Internet connection</string>
 
 </resources>
