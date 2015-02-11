@@ -1,6 +1,7 @@
 package com.sarmaru.mihai.shakeapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +16,8 @@ import java.util.List;
  */
 public class QuakeListAdapter extends RecyclerView.Adapter<QuakeListAdapter.ViewHolder> {
 
-    private List<QuakeObject> quakeList;
+    private static final String QUAKEID = "QUAKEID";
+    private static List<QuakeObject> quakeList;
     private static Context context;
 
     public QuakeListAdapter (List<QuakeObject> quakeObjectList, Context appContext) {
@@ -68,9 +70,10 @@ public class QuakeListAdapter extends RecyclerView.Adapter<QuakeListAdapter.View
 
         @Override
         public void onClick(View v) {
-
-            // TODO: OnCLick Intent action
-            Toast.makeText(v.getContext(), "Position: " + getPosition(), Toast.LENGTH_SHORT).show();
+            Intent detailIntent = new Intent(context, DetailActivity.class);
+            detailIntent.putExtra(QUAKEID, quakeList.get(getPosition()).getId());
+            detailIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(detailIntent);
         }
     }
 

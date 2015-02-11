@@ -8,5 +8,9 @@
     <string name="fetching_events_text">FETCHING EVENTS</string>
     <string name="fetching_icon_text"></string>
     <string name="toast_no_internet">No Internet connection</string>
+    <string name="title_activity_detail">QuakeDetails</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="toast_no_quake_info">No quake info...</string>
 
 </resources>
