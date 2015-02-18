@@ -8,12 +8,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 
 public class DetailActivity extends ActionBarActivity {
 
+    private static final int MAP_ZOOM = 6;
     private GoogleMap googleMap;
 
     private static final String QUAKEID = "QUAKEID";
@@ -67,10 +73,27 @@ public class DetailActivity extends ActionBarActivity {
     private void initializeMap () {
         if (googleMap == null) {
             googleMap = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
+            googleMap.getUiSettings().setZoomGesturesEnabled(true);
+            createQuakeMarker(this.quake);
             if (googleMap == null) {
                 Toast.makeText(getApplicationContext(),
-                        "Unable to create map", Toast.LENGTH_SHORT).show();
+                        getString(R.string.toast_unable_create_maps), Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    private void createQuakeMarker (QuakeObject quake) {
+        // Position marker on map
+        MarkerOptions marker = new MarkerOptions()
+                .position(new LatLng(quake.getLatitude(), quake.getLongitude()))
+                .title(String.valueOf(quake.getMagnitude()) + " " + quake.getRegion());
+        marker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+        googleMap.addMarker(marker);
+
+        // Position camera on event
+        CameraPosition position = new CameraPosition.Builder()
+                .target(new LatLng(quake.getLatitude(), quake.getLongitude()))
+                .zoom(MAP_ZOOM).build();
+        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(position));
     }
 }
