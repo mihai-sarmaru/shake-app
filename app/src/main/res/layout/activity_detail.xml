@@ -10,4 +10,20 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/map_fragment_height"/>
 
+    <ScrollView
+        android:layout_below="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
 </RelativeLayout>
