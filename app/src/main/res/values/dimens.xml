@@ -13,4 +13,7 @@
     <!-- Loading Layout Dimensions -->
     <dimen name="fetching_icon_size">48sp</dimen>
     <dimen name="fetching_text_size">18sp</dimen>
+
+    <!-- Google Maps Layout -->
+    <dimen name="map_fragment_height">150dp</dimen>
 </resources>
