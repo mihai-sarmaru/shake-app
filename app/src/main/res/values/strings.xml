@@ -12,5 +12,6 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="toast_no_quake_info">No quake info...</string>
+    <string name="toast_unable_create_maps">Unable to create map</string>
 
 </resources>
