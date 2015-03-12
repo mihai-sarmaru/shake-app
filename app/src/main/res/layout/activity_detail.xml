@@ -39,7 +39,8 @@
                 <TextView
                     android:id="@+id/detailRegion"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColor"/>
 
             </LinearLayout>
 
@@ -69,7 +70,8 @@
                 <TextView
                     android:id="@+id/detailMagnitude"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColor" />
 
             </LinearLayout>
 
@@ -91,7 +93,8 @@
                 <TextView
                     android:id="@+id/detailDepth"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColor" />
 
             </LinearLayout>
 
@@ -121,7 +124,8 @@
                 <TextView
                     android:id="@+id/detailDate"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColor" />
 
             </LinearLayout>
 
@@ -143,7 +147,8 @@
                 <TextView
                     android:id="@+id/detailTime"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColor" />
 
             </LinearLayout>
 
@@ -177,12 +182,14 @@
                     <TextView
                         android:id="@+id/detailLatitude"
                         android:layout_width="fill_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textColor" />
 
                     <TextView
                         android:id="@+id/detailLongitude"
                         android:layout_width="fill_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textColor" />
 
                 </LinearLayout>
 
