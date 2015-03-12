@@ -38,8 +38,8 @@ public class QuakeListAdapter extends RecyclerView.Adapter<QuakeListAdapter.View
         viewHolder.magnitudeView.setCircleText(String.valueOf(quakeList.get(i).getMagnitude()));
 
         viewHolder.regionTV.setText(quakeList.get(i).getRegion());
-        viewHolder.dateTV.setText(Utils.formatDate(quakeList.get(i).getTime()));
-        viewHolder.timeTV.setText(Utils.formatTime(quakeList.get(i).getTime()));
+        viewHolder.dateTV.setText(Utils.formatDateShort(quakeList.get(i).getTime()));
+        viewHolder.timeTV.setText(Utils.formatTimeShort(quakeList.get(i).getTime()));
 
         ShakeAppPreferences prefs = new ShakeAppPreferences(context);
         if (prefs.getLatestDatabaseId() > 0 && quakeList.get(i).getId() > prefs.getLatestDatabaseId()) {
