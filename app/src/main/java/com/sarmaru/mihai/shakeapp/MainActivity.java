@@ -1,5 +1,6 @@
 package com.sarmaru.mihai.shakeapp;
 
+import android.content.BroadcastReceiver;
 import android.content.IntentFilter;
 import android.graphics.Typeface;
 import android.net.ConnectivityManager;
@@ -26,6 +27,7 @@ public class MainActivity extends ActionBarActivity {
     RelativeLayout loadingLayout;
     RecyclerView quakeRecyclerView;
     RecyclerView.Adapter adapter;
+    BroadcastReceiver receiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +51,8 @@ public class MainActivity extends ActionBarActivity {
         });
 
         // Register receiver to check for Internet connection
-        registerReceiver(new ConnectionChangeReceiver(),
-                new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+        receiver =  new ConnectionChangeReceiver();
+        registerReceiver(receiver, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 
         quakeRecyclerView = (RecyclerView) findViewById(R.id.quake_main_list);
         quakeRecyclerView.setHasFixedSize(true);
@@ -81,6 +83,12 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        unregisterReceiver(receiver);
+        super.onDestroy();
     }
 
     private class GetQuakeAsync extends AsyncTask<Void, Void, Void> {

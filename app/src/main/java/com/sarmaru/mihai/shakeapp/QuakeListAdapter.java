@@ -2,6 +2,7 @@ package com.sarmaru.mihai.shakeapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,12 +39,12 @@ public class QuakeListAdapter extends RecyclerView.Adapter<QuakeListAdapter.View
         viewHolder.magnitudeView.setCircleText(String.valueOf(quakeList.get(i).getMagnitude()));
 
         viewHolder.regionTV.setText(quakeList.get(i).getRegion());
-        viewHolder.dateTV.setText(Utils.formatDate(quakeList.get(i).getTime()));
-        viewHolder.timeTV.setText(Utils.formatTime(quakeList.get(i).getTime()));
+        viewHolder.dateTV.setText(Utils.formatDateShort(quakeList.get(i).getTime()));
+        viewHolder.timeTV.setText(Utils.formatTimeShort(quakeList.get(i).getTime()));
 
         ShakeAppPreferences prefs = new ShakeAppPreferences(context);
         if (prefs.getLatestDatabaseId() > 0 && quakeList.get(i).getId() > prefs.getLatestDatabaseId()) {
-            viewHolder.newTV.setVisibility(View.VISIBLE);
+            viewHolder.regionTV.setTypeface(null, Typeface.BOLD);
         }
     }
 
@@ -54,7 +55,7 @@ public class QuakeListAdapter extends RecyclerView.Adapter<QuakeListAdapter.View
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public TextView regionTV, dateTV, timeTV, newTV;
+        public TextView regionTV, dateTV, timeTV, iconDateR, iconTimeR;
         public CircleColorView magnitudeView;
 
         public ViewHolder(View itemView) {
@@ -64,8 +65,13 @@ public class QuakeListAdapter extends RecyclerView.Adapter<QuakeListAdapter.View
             regionTV = (TextView) itemView.findViewById(R.id.regionTV);
             dateTV = (TextView) itemView.findViewById(R.id.dateTV);
             timeTV = (TextView) itemView.findViewById(R.id.timeTV);
-            newTV = (TextView) itemView.findViewById(R.id.newTV);
             magnitudeView = (CircleColorView) itemView.findViewById(R.id.magnitude_circle_color_view);
+
+            Typeface iconFont = Typeface.createFromAsset(itemView.getContext().getAssets(), "fontawesome-webfont.ttf");
+            iconDateR = (TextView) itemView.findViewById(R.id.iconDateR);
+            iconTimeR = (TextView) itemView.findViewById(R.id.iconTimeR);
+            iconDateR.setTypeface(iconFont);
+            iconTimeR.setTypeface(iconFont);
         }
 
         @Override
