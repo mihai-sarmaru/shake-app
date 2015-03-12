@@ -1,6 +1,7 @@
 package com.sarmaru.mihai.shakeapp;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -47,6 +48,7 @@ public class DetailActivity extends ActionBarActivity {
             ex.printStackTrace();
         }
 
+        setupIconsTypeFace();
         displayQuakeDetails(quake);
     }
 
@@ -98,6 +100,24 @@ public class DetailActivity extends ActionBarActivity {
                 .target(new LatLng(quake.getLatitude(), quake.getLongitude()))
                 .zoom(MAP_ZOOM).build();
         googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(position));
+    }
+
+    private void setupIconsTypeFace () {
+        // Instantiate views
+        TextView iconRegion = (TextView) findViewById(R.id.iconRegion);
+        TextView iconMagnitude = (TextView) findViewById(R.id.iconMagnitude);
+        TextView iconDepth = (TextView) findViewById(R.id.iconDepth);
+        TextView iconDate = (TextView) findViewById(R.id.iconDate);
+        TextView iconTime = (TextView) findViewById(R.id.iconTime);
+        TextView iconLocation = (TextView) findViewById(R.id.iconLocation);
+
+        Typeface iconFont = Typeface.createFromAsset(getAssets(), "fontawesome-webfont.ttf");
+        iconRegion.setTypeface(iconFont);
+        iconMagnitude.setTypeface(iconFont);
+        iconDepth.setTypeface(iconFont);
+        iconDate.setTypeface(iconFont);
+        iconTime.setTypeface(iconFont);
+        iconLocation.setTypeface(iconFont);
     }
 
     private void displayQuakeDetails (QuakeObject quake) {
