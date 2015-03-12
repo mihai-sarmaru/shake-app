@@ -1,11 +1,13 @@
 package com.sarmaru.mihai.shakeapp;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -45,6 +47,9 @@ public class DetailActivity extends ActionBarActivity {
             Log.d("MAPS", "Failed initializing maps");
             ex.printStackTrace();
         }
+
+        setupIconsTypeFace();
+        displayQuakeDetails(quake);
     }
 
     @Override
@@ -95,5 +100,42 @@ public class DetailActivity extends ActionBarActivity {
                 .target(new LatLng(quake.getLatitude(), quake.getLongitude()))
                 .zoom(MAP_ZOOM).build();
         googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(position));
+    }
+
+    private void setupIconsTypeFace () {
+        // Instantiate views
+        TextView iconRegion = (TextView) findViewById(R.id.iconRegion);
+        TextView iconMagnitude = (TextView) findViewById(R.id.iconMagnitude);
+        TextView iconDepth = (TextView) findViewById(R.id.iconDepth);
+        TextView iconDate = (TextView) findViewById(R.id.iconDate);
+        TextView iconTime = (TextView) findViewById(R.id.iconTime);
+        TextView iconLocation = (TextView) findViewById(R.id.iconLocation);
+
+        Typeface iconFont = Typeface.createFromAsset(getAssets(), "fontawesome-webfont.ttf");
+        iconRegion.setTypeface(iconFont);
+        iconMagnitude.setTypeface(iconFont);
+        iconDepth.setTypeface(iconFont);
+        iconDate.setTypeface(iconFont);
+        iconTime.setTypeface(iconFont);
+        iconLocation.setTypeface(iconFont);
+    }
+
+    private void displayQuakeDetails (QuakeObject quake) {
+        // Instantiate views
+        TextView detailRegion = (TextView) findViewById(R.id.detailRegion);
+        TextView detailMagnitude = (TextView) findViewById(R.id.detailMagnitude);
+        TextView detailDepth = (TextView) findViewById(R.id.detailDepth);
+        TextView detailDate = (TextView) findViewById(R.id.detailDate);
+        TextView detailTime = (TextView) findViewById(R.id.detailTime);
+        TextView detailLatitude = (TextView) findViewById(R.id.detailLatitude);
+        TextView detailLongitude = (TextView) findViewById(R.id.detailLongitude);
+
+        detailRegion.setText(quake.getRegion());
+        detailMagnitude.setText(String.valueOf(quake.getMagnitude()) + " Richter scale");
+        detailDepth.setText(String.valueOf(quake.getDepth()) + " KM depth");
+        detailDate.setText(Utils.formatDate(quake.getTime()));
+        detailTime.setText(Utils.formatTime(quake.getTime()));
+        detailLatitude.setText(String.valueOf(quake.getLatitude()) + " Lat");
+        detailLongitude.setText(String.valueOf(quake.getLongitude()) + " Lng");
     }
 }

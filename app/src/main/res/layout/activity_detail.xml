@@ -1,15 +1,202 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context="com.sarmaru.mihai.shakeapp.DetailActivity">
 
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.MapFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="@dimen/map_fragment_height"/>
+
+    <ScrollView
+        android:layout_below="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_margin="@dimen/activity_horizontal_margin">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Region -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/linear_layout_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/iconRegion"
+                    android:layout_width="@dimen/icon_width"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/icon_size"
+                    android:textColor="@color/colorAccent"
+                    android:text="@string/iconRegion" />
+
+                <TextView
+                    android:id="@+id/detailRegion"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColor"/>
+
+            </LinearLayout>
+
+            <!-- Separator -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/icon_width"
+                android:background="@color/separatorAccent"/>
+
+            <!-- Magnitude -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/linear_layout_margin"
+                android:layout_marginBottom="@dimen/linear_layout_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/iconMagnitude"
+                    android:layout_width="@dimen/icon_width"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/icon_size"
+                    android:textColor="@color/colorAccent"
+                    android:text="@string/iconMagnitude" />
+
+                <TextView
+                    android:id="@+id/detailMagnitude"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColor" />
+
+            </LinearLayout>
+
+            <!-- Depth -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/linear_layout_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/iconDepth"
+                    android:layout_width="@dimen/icon_width"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/icon_size"
+                    android:textColor="@color/colorAccent"
+                    android:text="@string/iconDepth" />
+
+                <TextView
+                    android:id="@+id/detailDepth"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColor" />
+
+            </LinearLayout>
+
+            <!-- Separator -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/icon_width"
+                android:background="@color/separatorAccent"/>
+
+            <!-- Date -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/linear_layout_margin"
+                android:layout_marginBottom="@dimen/linear_layout_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/iconDate"
+                    android:layout_width="@dimen/icon_width"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/icon_size"
+                    android:textColor="@color/colorAccent"
+                    android:text="@string/iconDate" />
+
+                <TextView
+                    android:id="@+id/detailDate"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColor" />
+
+            </LinearLayout>
+
+            <!-- Time -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/linear_layout_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/iconTime"
+                    android:layout_width="@dimen/icon_width"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/icon_size"
+                    android:textColor="@color/colorAccent"
+                    android:text="@string/iconTime" />
+
+                <TextView
+                    android:id="@+id/detailTime"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textColor" />
+
+            </LinearLayout>
+
+            <!-- Separator -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/icon_width"
+                android:background="@color/separatorAccent"/>
+
+            <!-- Location -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/linear_layout_margin"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/iconLocation"
+                    android:layout_width="@dimen/icon_width"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/icon_size"
+                    android:textColor="@color/colorAccent"
+                    android:text="@string/iconLocation" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/detailLatitude"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textColor" />
+
+                    <TextView
+                        android:id="@+id/detailLongitude"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textColor" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </RelativeLayout>
