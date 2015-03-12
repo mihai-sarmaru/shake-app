@@ -14,6 +14,10 @@ public class UtilsTest extends InstrumentationTestCase {
         String formattedDate = Utils.formatDate(millis * 1000);
         String expectedDate = "13.12.2014";
         assertEquals(formattedDate, expectedDate);
+
+        formattedDate = Utils.formatDateShort(millis * 1000);
+        expectedDate = "13.12";
+        assertEquals(formattedDate, expectedDate);
     }
 
     public void testFormatTime () {

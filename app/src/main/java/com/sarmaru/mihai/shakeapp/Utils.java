@@ -25,6 +25,12 @@ public class Utils {
         return dateFormat.format(date);
     }
 
+    public static String formatDateShort(long time) {
+        Date date = new Date(time);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM");
+        return dateFormat.format(date);
+    }
+
     public static String formatTime(long time) {
         Date dateTime = new Date(time);
         SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
