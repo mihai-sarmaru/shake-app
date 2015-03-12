@@ -10,7 +10,7 @@
     <dimen name="date_time_margin_right">20dp</dimen>
     <dimen name="linear_layout_margin">8dp</dimen>
     <dimen name="linear_layout_margin_top">2dp</dimen>
-    <dimen name="separator_margin_top">8dp</dimen>
+    <dimen name="separator_margin_top">10dp</dimen>
     <dimen name="separator_margin_bottom">5dp</dimen>
     <dimen name="new_padding_lef_right">3dp</dimen>
     <dimen name="main_layout_region_top_margin">3dp</dimen>
