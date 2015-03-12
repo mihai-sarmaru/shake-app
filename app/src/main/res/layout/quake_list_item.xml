@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_marginBottom="@dimen/linear_layout_margin_bottom"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -30,7 +28,7 @@
             android:id="@+id/regionTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textColor="@color/textColor"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -58,10 +56,19 @@
                 android:paddingRight="@dimen/new_padding_lef_right"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
                 android:text="@string/list_item_new"
                 android:visibility="gone"/>
 
         </LinearLayout>
+
+        <!-- Separator -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/separator_margin"
+            android:layout_marginBottom="@dimen/separator_margin"
+            android:background="@color/separatorAccent"/>
 
     </LinearLayout>
 
