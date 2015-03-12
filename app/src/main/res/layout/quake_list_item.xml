@@ -41,12 +41,14 @@
                 android:id="@+id/dateTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/recyclerview_date_time_text_size"
                 android:layout_marginRight="@dimen/date_time_margin_right" />
 
             <TextView
                 android:id="@+id/timeTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textSize="@dimen/recyclerview_date_time_text_size"
                 android:layout_marginRight="@dimen/date_time_margin_right" />
 
             <TextView
@@ -57,7 +59,7 @@
                 android:paddingRight="@dimen/new_padding_lef_right"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textSize="@dimen/recyclerview_date_time_text_size"
                 android:text="@string/list_item_new"
                 android:visibility="gone"/>
 
