@@ -2,6 +2,7 @@ package com.sarmaru.mihai.shakeapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,7 +55,7 @@ public class QuakeListAdapter extends RecyclerView.Adapter<QuakeListAdapter.View
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public TextView regionTV, dateTV, timeTV, newTV;
+        public TextView regionTV, dateTV, timeTV, newTV, iconDateR, iconTimeR;
         public CircleColorView magnitudeView;
 
         public ViewHolder(View itemView) {
@@ -66,6 +67,12 @@ public class QuakeListAdapter extends RecyclerView.Adapter<QuakeListAdapter.View
             timeTV = (TextView) itemView.findViewById(R.id.timeTV);
             newTV = (TextView) itemView.findViewById(R.id.newTV);
             magnitudeView = (CircleColorView) itemView.findViewById(R.id.magnitude_circle_color_view);
+
+            Typeface iconFont = Typeface.createFromAsset(itemView.getContext().getAssets(), "fontawesome-webfont.ttf");
+            iconDateR = (TextView) itemView.findViewById(R.id.iconDateR);
+            iconTimeR = (TextView) itemView.findViewById(R.id.iconTimeR);
+            iconDateR.setTypeface(iconFont);
+            iconTimeR.setTypeface(iconFont);
         }
 
         @Override

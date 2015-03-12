@@ -22,4 +22,5 @@
 
     <!-- Google Maps Layout -->
     <dimen name="map_fragment_height">150dp</dimen>
+    <dimen name="reciclerview_icon_right_margin">5dp</dimen>
 </resources>
