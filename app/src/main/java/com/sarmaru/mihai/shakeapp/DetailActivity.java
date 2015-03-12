@@ -131,11 +131,11 @@ public class DetailActivity extends ActionBarActivity {
         TextView detailLongitude = (TextView) findViewById(R.id.detailLongitude);
 
         detailRegion.setText(quake.getRegion());
-        detailMagnitude.setText(String.valueOf(quake.getMagnitude()));
-        detailDepth.setText(String.valueOf(quake.getDepth()));
+        detailMagnitude.setText(String.valueOf(quake.getMagnitude()) + " Richter scale");
+        detailDepth.setText(String.valueOf(quake.getDepth()) + " KM depth");
         detailDate.setText(Utils.formatDate(quake.getTime()));
         detailTime.setText(Utils.formatTime(quake.getTime()));
-        detailLatitude.setText(String.valueOf(quake.getLatitude()));
-        detailLongitude.setText(String.valueOf(quake.getLongitude()));
+        detailLatitude.setText(String.valueOf(quake.getLatitude()) + " Lat");
+        detailLongitude.setText(String.valueOf(quake.getLongitude()) + " Lng");
     }
 }
