@@ -67,18 +67,6 @@
                 android:textSize="@dimen/recyclerview_date_time_text_size"
                 android:layout_marginRight="@dimen/date_time_margin_right" />
 
-            <TextView
-                android:id="@+id/newTV"
-                android:background="@color/new_green"
-                android:textColor="@color/new_white"
-                android:paddingLeft="@dimen/new_padding_lef_right"
-                android:paddingRight="@dimen/new_padding_lef_right"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/recyclerview_date_time_text_size"
-                android:text="@string/list_item_new"
-                android:visibility="gone"/>
-
         </LinearLayout>
 
         <!-- Separator -->

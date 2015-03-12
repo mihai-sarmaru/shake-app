@@ -44,7 +44,7 @@ public class QuakeListAdapter extends RecyclerView.Adapter<QuakeListAdapter.View
 
         ShakeAppPreferences prefs = new ShakeAppPreferences(context);
         if (prefs.getLatestDatabaseId() > 0 && quakeList.get(i).getId() > prefs.getLatestDatabaseId()) {
-            viewHolder.newTV.setVisibility(View.VISIBLE);
+            viewHolder.regionTV.setTypeface(null, Typeface.BOLD);
         }
     }
 
@@ -55,7 +55,7 @@ public class QuakeListAdapter extends RecyclerView.Adapter<QuakeListAdapter.View
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        public TextView regionTV, dateTV, timeTV, newTV, iconDateR, iconTimeR;
+        public TextView regionTV, dateTV, timeTV, iconDateR, iconTimeR;
         public CircleColorView magnitudeView;
 
         public ViewHolder(View itemView) {
@@ -65,7 +65,6 @@ public class QuakeListAdapter extends RecyclerView.Adapter<QuakeListAdapter.View
             regionTV = (TextView) itemView.findViewById(R.id.regionTV);
             dateTV = (TextView) itemView.findViewById(R.id.dateTV);
             timeTV = (TextView) itemView.findViewById(R.id.timeTV);
-            newTV = (TextView) itemView.findViewById(R.id.newTV);
             magnitudeView = (CircleColorView) itemView.findViewById(R.id.magnitude_circle_color_view);
 
             Typeface iconFont = Typeface.createFromAsset(itemView.getContext().getAssets(), "fontawesome-webfont.ttf");
