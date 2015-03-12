@@ -30,8 +30,10 @@
 
                 <TextView
                     android:id="@+id/iconRegion"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/icon_width"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/icon_size"
+                    android:textColor="@color/colorAccent"
                     android:text="@string/iconRegion" />
 
                 <TextView
@@ -50,8 +52,10 @@
 
                 <TextView
                     android:id="@+id/iconMagnitude"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/icon_width"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/icon_size"
+                    android:textColor="@color/colorAccent"
                     android:text="@string/iconMagnitude" />
 
                 <TextView
@@ -70,8 +74,10 @@
 
                 <TextView
                     android:id="@+id/iconDepth"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/icon_width"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/icon_size"
+                    android:textColor="@color/colorAccent"
                     android:text="@string/iconDepth" />
 
                 <TextView
@@ -90,8 +96,10 @@
 
                 <TextView
                     android:id="@+id/iconDate"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/icon_width"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/icon_size"
+                    android:textColor="@color/colorAccent"
                     android:text="@string/iconDate" />
 
                 <TextView
@@ -110,8 +118,10 @@
 
                 <TextView
                     android:id="@+id/iconTime"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/icon_width"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/icon_size"
+                    android:textColor="@color/colorAccent"
                     android:text="@string/iconTime" />
 
                 <TextView
@@ -130,8 +140,10 @@
 
                 <TextView
                     android:id="@+id/iconLocation"
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/icon_width"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/icon_size"
+                    android:textColor="@color/colorAccent"
                     android:text="@string/iconLocation" />
 
                 <LinearLayout
