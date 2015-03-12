@@ -31,6 +31,12 @@ public class Utils {
         return timeFormat.format(dateTime);
     }
 
+    public static String formatTimeShort(long time) {
+        Date dateTime = new Date(time);
+        SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+        return timeFormat.format(dateTime);
+    }
+
     public static boolean isNetworkAvailable(Context context) {
         return ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo() != null;
     }

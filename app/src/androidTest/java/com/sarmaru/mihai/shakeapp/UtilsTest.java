@@ -20,6 +20,10 @@ public class UtilsTest extends InstrumentationTestCase {
         String formattedTime = Utils.formatTime(millis * 1000);
         String expectedTime = "09:04:38";
         assertEquals(formattedTime, expectedTime);
+
+        formattedTime = Utils.formatTimeShort(millis * 1000);
+        expectedTime = "09:04";
+        assertEquals(formattedTime, expectedTime);
     }
 
     public void testInternetConnection () {
