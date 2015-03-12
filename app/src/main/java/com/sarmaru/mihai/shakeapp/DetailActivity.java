@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -45,6 +46,8 @@ public class DetailActivity extends ActionBarActivity {
             Log.d("MAPS", "Failed initializing maps");
             ex.printStackTrace();
         }
+
+        displayQuakeDetails(quake);
     }
 
     @Override
@@ -95,5 +98,24 @@ public class DetailActivity extends ActionBarActivity {
                 .target(new LatLng(quake.getLatitude(), quake.getLongitude()))
                 .zoom(MAP_ZOOM).build();
         googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(position));
+    }
+
+    private void displayQuakeDetails (QuakeObject quake) {
+        // Instantiate views
+        TextView detailRegion = (TextView) findViewById(R.id.detailRegion);
+        TextView detailMagnitude = (TextView) findViewById(R.id.detailMagnitude);
+        TextView detailDepth = (TextView) findViewById(R.id.detailDepth);
+        TextView detailDate = (TextView) findViewById(R.id.detailDate);
+        TextView detailTime = (TextView) findViewById(R.id.detailTime);
+        TextView detailLatitude = (TextView) findViewById(R.id.detailLatitude);
+        TextView detailLongitude = (TextView) findViewById(R.id.detailLongitude);
+
+        detailRegion.setText(quake.getRegion());
+        detailMagnitude.setText(String.valueOf(quake.getMagnitude()));
+        detailDepth.setText(String.valueOf(quake.getDepth()));
+        detailDate.setText(Utils.formatDate(quake.getTime()));
+        detailTime.setText(Utils.formatTime(quake.getTime()));
+        detailLatitude.setText(String.valueOf(quake.getLatitude()));
+        detailLongitude.setText(String.valueOf(quake.getLongitude()));
     }
 }
