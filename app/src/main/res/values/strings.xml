@@ -14,4 +14,12 @@
     <string name="toast_no_quake_info">No quake info...</string>
     <string name="toast_unable_create_maps">Unable to create map</string>
 
+    <!-- Detail Activity Icons -->
+    <string name="iconRegion">&#xf0ac;</string>
+    <string name="iconMagnitude">&#xf1fe;</string>
+    <string name="iconDepth">&#xf103;</string>
+    <string name="iconDate">&#xf133;</string>
+    <string name="iconTime">&#xf017;</string>
+    <string name="iconLocation">&#xf041;</string>
+
 </resources>
