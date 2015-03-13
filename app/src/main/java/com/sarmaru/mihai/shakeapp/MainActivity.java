@@ -87,6 +87,9 @@ public class MainActivity extends ActionBarActivity {
 
     @Override
     protected void onDestroy() {
+        ShakeAppPreferences prefs = new ShakeAppPreferences(this);
+        prefs.setLatestDatabaseId(0);
+
         unregisterReceiver(receiver);
         super.onDestroy();
     }
