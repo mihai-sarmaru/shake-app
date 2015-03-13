@@ -41,6 +41,8 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onRefresh() {
                 if (Utils.isNetworkAvailable(getApplicationContext())) {
+                    ShakeAppPreferences prefs = new ShakeAppPreferences(getApplicationContext());
+                    prefs.setLatestDatabaseId(0);
                     new GetQuakeAsync().execute();
                 } else {
                     swipeRefreshLayout.setRefreshing(false);
@@ -86,10 +88,14 @@ public class MainActivity extends ActionBarActivity {
     }
 
     @Override
-    protected void onDestroy() {
+    protected void onStop() {
         ShakeAppPreferences prefs = new ShakeAppPreferences(this);
         prefs.setLatestDatabaseId(0);
+        super.onStop();
+    }
 
+    @Override
+    protected void onDestroy() {
         unregisterReceiver(receiver);
         super.onDestroy();
     }

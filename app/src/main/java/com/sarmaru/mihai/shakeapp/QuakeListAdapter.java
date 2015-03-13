@@ -76,9 +76,6 @@ public class QuakeListAdapter extends RecyclerView.Adapter<QuakeListAdapter.View
 
         @Override
         public void onClick(View v) {
-            ShakeAppPreferences prefs = new ShakeAppPreferences(context);
-            prefs.setLatestDatabaseId(0);
-
             Intent detailIntent = new Intent(context, DetailActivity.class);
             detailIntent.putExtra(QUAKEID, quakeList.get(getPosition()).getId());
             detailIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
