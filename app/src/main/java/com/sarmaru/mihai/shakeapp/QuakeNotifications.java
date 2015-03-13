@@ -2,10 +2,12 @@ package com.sarmaru.mihai.shakeapp;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Mihai Sarmaru on 13.03.2015.
@@ -13,9 +15,60 @@ import android.support.v4.app.NotificationCompat;
 public class QuakeNotifications {
 
     private Context context;
+    private String title, content;
+    private Intent notificationIntent;
+
+    private static final String QUAKEID = "QUAKEID";
 
     public QuakeNotifications (Context mContext) {
         this.context = mContext;
+    }
+
+    public void startNotification(int lastQuakeId, int minMagnitude) {
+        List<QuakeObject> quakeList = getLatestQuakeObjects(lastQuakeId);
+        quakeList = parseMagnitude(quakeList, minMagnitude);
+
+        if (quakeList.size() > 0) {
+            setupNotificationContent(quakeList);
+            launchNotification(notificationIntent, title, content);
+        }
+    }
+
+    private List<QuakeObject> parseMagnitude(List<QuakeObject> quakeList, int minMagnitude) {
+        List<QuakeObject> parsedQuakeList = new ArrayList<>();
+
+        if (quakeList.size() > 0) {
+            for (QuakeObject quake : quakeList) {
+                if (quake.getMagnitude() >= minMagnitude) {
+                    parsedQuakeList.add(quake);
+                }
+            }
+        }
+        return parsedQuakeList;
+    }
+
+    private void setupNotificationContent (List<QuakeObject> quakeList) {
+        if (quakeList.size() == 1) {
+            notificationIntent = new Intent(context, DetailActivity.class);
+            notificationIntent.putExtra(QUAKEID, quakeList.get(0).getId());
+
+            title = String.valueOf(quakeList.get(0).getMagnitude()) + " - " +
+                    quakeList.get(0).getRegion();
+            content = Utils.formatDate(quakeList.get(0).getTime()) + " - " +
+                    Utils.formatTimeShort(quakeList.get(0).getTime());
+        } else {
+            notificationIntent = new Intent(context, MainActivity.class);
+
+            title = String.valueOf(quakeList.size()) + context.getString(R.string.notification_new_quakes);
+            for (QuakeObject quake : quakeList) {
+                content = content + String.valueOf(quake.getMagnitude()) + "   ";
+            }
+        }
+    }
+
+    private List<QuakeObject> getLatestQuakeObjects(int lastQuakeId) {
+        DatabaseHandler db = new DatabaseHandler(context);
+        return db.getLatestQuakesList(lastQuakeId);
     }
 
     private void launchNotification(Intent intent, String title, String content) {
