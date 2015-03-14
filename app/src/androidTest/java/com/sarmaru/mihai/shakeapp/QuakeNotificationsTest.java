@@ -1,5 +1,6 @@
 package com.sarmaru.mihai.shakeapp;
 
+import android.content.Context;
 import android.test.InstrumentationTestCase;
 import android.util.Log;
 
@@ -17,6 +18,22 @@ public class QuakeNotificationsTest extends InstrumentationTestCase {
     private List<QuakeObject> quakeList;
     private int minMagnitude = 3;
     private int lastQuakeId = 0;
+
+    public void testQuakeNotifications () {
+        QuakeNotificationsSubclass notificationClass = new QuakeNotificationsSubclass(getInstrumentation().getTargetContext());
+        List<QuakeObject> notificationQuakeList = notificationClass.getLatestQuakeObjects(lastQuakeId);
+        notificationQuakeList = notificationClass.parseMagnitude(notificationQuakeList, minMagnitude);
+
+        if (notificationQuakeList.size() > 0) {
+            notificationClass.setupNotificationContent(notificationQuakeList);
+        }
+
+        assertNotNull(notificationClass.title);
+        assertNotNull(notificationClass.content);
+        assertNotNull(notificationClass.notificationIntent);
+
+        // TODO Add additional assertions
+    }
 
     @Override
     protected void setUp() throws Exception {
@@ -67,6 +84,12 @@ public class QuakeNotificationsTest extends InstrumentationTestCase {
             Log.d("TEST", "Getting test JSON String failed");
             e.printStackTrace();
             return null;
+        }
+    }
+
+    private class QuakeNotificationsSubclass extends QuakeNotifications {
+        public QuakeNotificationsSubclass(Context mContext) {
+            super(mContext);
         }
     }
 }
