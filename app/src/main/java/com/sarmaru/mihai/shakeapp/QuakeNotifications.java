@@ -15,8 +15,8 @@ import java.util.List;
 public class QuakeNotifications {
 
     private Context context;
-    private String title, content;
-    private Intent notificationIntent;
+    protected String title, content;
+    protected Intent notificationIntent;
 
     private static final String QUAKEID = "QUAKEID";
 
@@ -34,7 +34,7 @@ public class QuakeNotifications {
         }
     }
 
-    private List<QuakeObject> parseMagnitude(List<QuakeObject> quakeList, int minMagnitude) {
+    protected List<QuakeObject> parseMagnitude(List<QuakeObject> quakeList, int minMagnitude) {
         List<QuakeObject> parsedQuakeList = new ArrayList<>();
 
         if (quakeList.size() > 0) {
@@ -47,7 +47,7 @@ public class QuakeNotifications {
         return parsedQuakeList;
     }
 
-    private void setupNotificationContent (List<QuakeObject> quakeList) {
+    protected void setupNotificationContent (List<QuakeObject> quakeList) {
         if (quakeList.size() == 1) {
             notificationIntent = new Intent(context, DetailActivity.class);
             notificationIntent.putExtra(QUAKEID, quakeList.get(0).getId());
@@ -60,13 +60,14 @@ public class QuakeNotifications {
             notificationIntent = new Intent(context, MainActivity.class);
 
             title = String.valueOf(quakeList.size()) + context.getString(R.string.notification_new_quakes);
+            content = "";
             for (QuakeObject quake : quakeList) {
                 content = content + String.valueOf(quake.getMagnitude()) + "   ";
             }
         }
     }
 
-    private List<QuakeObject> getLatestQuakeObjects(int lastQuakeId) {
+    protected List<QuakeObject> getLatestQuakeObjects(int lastQuakeId) {
         DatabaseHandler db = new DatabaseHandler(context);
         return db.getLatestQuakesList(lastQuakeId);
     }
