@@ -91,7 +91,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public List<QuakeObject> getLatestQuakesList (int latestQuakeID) {
         List<QuakeObject> quakeList = new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + KEY_ID + " > " + latestQuakeID, null);
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + KEY_UID + " > " + latestQuakeID, null);
         if (cursor.moveToFirst()) {
             do {
                 quakeList.add(getQuakeObjectFromCursor(cursor));
