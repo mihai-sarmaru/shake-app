@@ -8,6 +8,7 @@ import android.test.InstrumentationTestCase;
 public class ShakeAppPreferencesTest extends InstrumentationTestCase {
 
     private int id = 30316;
+    private int magnitude = 3;
 
     public void testServicePreferences () {
         ShakeAppPreferences prefs = new ShakeAppPreferences(getInstrumentation().getTargetContext());
@@ -40,5 +41,16 @@ public class ShakeAppPreferencesTest extends InstrumentationTestCase {
         // Reset preference to default
         prefs.setUtcTime(false);
         assertFalse(prefs.getUtcTime());
+    }
+
+    public void testNotificationMagnitudePreferences () {
+        ShakeAppPreferences prefs = new ShakeAppPreferences(getInstrumentation().getTargetContext());
+
+        prefs.setMagnitude(magnitude);
+        assertEquals(magnitude, prefs.getMagnitude());
+
+        // Reset preference to default
+        prefs.setMagnitude(0);
+        assertEquals(0, prefs.getMagnitude());
     }
 }
