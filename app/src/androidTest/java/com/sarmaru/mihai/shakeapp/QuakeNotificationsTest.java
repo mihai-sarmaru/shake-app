@@ -16,23 +16,30 @@ import java.util.List;
 public class QuakeNotificationsTest extends InstrumentationTestCase {
 
     private List<QuakeObject> quakeList;
+    private int noMagnitude = 0;
     private int minMagnitude = 3;
+    private int maxMagnitude = 4;
     private int lastQuakeId = 0;
 
-    public void testQuakeNotifications () {
-        QuakeNotificationsSubclass notificationClass = new QuakeNotificationsSubclass(getInstrumentation().getTargetContext());
-        List<QuakeObject> notificationQuakeList = notificationClass.getLatestQuakeObjects(lastQuakeId);
-        notificationQuakeList = notificationClass.parseMagnitude(notificationQuakeList, minMagnitude);
-
-        if (notificationQuakeList.size() > 0) {
-            notificationClass.setupNotificationContent(notificationQuakeList);
-        }
+    public void testQuakeNotificationsNoMagnitude () {
+        QuakeNotificationsSubclass notificationClass = getQuakeNotificationsSubclass(noMagnitude);
 
         assertNotNull(notificationClass.title);
         assertNotNull(notificationClass.content);
         assertNotNull(notificationClass.notificationIntent);
 
         // TODO Add additional assertions
+    }
+
+    private QuakeNotificationsSubclass getQuakeNotificationsSubclass(int magnitude) {
+        QuakeNotificationsSubclass notificationClass = new QuakeNotificationsSubclass(getInstrumentation().getTargetContext());
+        List<QuakeObject> notificationQuakeList = notificationClass.getLatestQuakeObjects(lastQuakeId);
+        notificationQuakeList = notificationClass.parseMagnitude(notificationQuakeList, magnitude);
+
+        if (notificationQuakeList.size() > 0) {
+            notificationClass.setupNotificationContent(notificationQuakeList);
+        }
+        return notificationClass;
     }
 
     @Override
