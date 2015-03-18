@@ -13,11 +13,11 @@ public class ShakeAppPreferencesTest extends InstrumentationTestCase {
         ShakeAppPreferences prefs = new ShakeAppPreferences(getInstrumentation().getTargetContext());
 
         prefs.setServiceDone(true);
-        assertEquals(true, prefs.isServiceDone());
+        assertTrue(prefs.isServiceDone());
 
         // Reset preference to default
         prefs.setServiceDone(false);
-        assertEquals(false, prefs.isServiceDone());
+        assertFalse(prefs.isServiceDone());
     }
 
     public void testLatestDatabaseIdPreferences () {
@@ -29,5 +29,16 @@ public class ShakeAppPreferencesTest extends InstrumentationTestCase {
         // Reset preference to default
         prefs.setLatestDatabaseId(0);
         assertEquals(0, prefs.getLatestDatabaseId());
+    }
+
+    public void testUtcTimePreferences () {
+        ShakeAppPreferences prefs = new ShakeAppPreferences(getInstrumentation().getTargetContext());
+
+        prefs.setUtcTime(true);
+        assertTrue(prefs.getUtcTime());
+
+        // Reset preference to default
+        prefs.setUtcTime(false);
+        assertFalse(prefs.getUtcTime());
     }
 }
