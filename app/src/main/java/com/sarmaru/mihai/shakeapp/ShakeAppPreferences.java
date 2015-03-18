@@ -18,6 +18,9 @@ public class ShakeAppPreferences {
     private static final String PREF_DATABASE_LATEST_ID = "databaseLatestId";
     private static final int PREF_DEFAULT_DATABASE_LATEST_ID = 0;
 
+    private static final String PREF_UTC = "utcTime";
+    private static final boolean PREF_DEFAULT_UTC = false;
+
     public ShakeAppPreferences (Context context) {
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
     }
@@ -36,5 +39,13 @@ public class ShakeAppPreferences {
 
     public void setLatestDatabaseId (int latestId) {
         prefs.edit().putInt(PREF_DATABASE_LATEST_ID, latestId).apply();
+    }
+
+    public boolean getUtcTime () {
+        return prefs.getBoolean(PREF_UTC, PREF_DEFAULT_UTC);
+    }
+
+    public void setUtcTime (boolean useUtcTime) {
+        prefs.edit().putBoolean(PREF_UTC, useUtcTime).apply();
     }
 }
