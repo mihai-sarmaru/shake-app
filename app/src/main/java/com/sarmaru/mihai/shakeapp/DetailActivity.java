@@ -22,6 +22,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class DetailActivity extends ActionBarActivity {
 
     private static final int MAP_ZOOM = 6;
+    private static final int ROMANIA_TIME_ZONE = 1000 * 3600 * 2;
     private GoogleMap googleMap;
 
     private static final String QUAKEID = "QUAKEID";
@@ -48,8 +49,11 @@ public class DetailActivity extends ActionBarActivity {
             ex.printStackTrace();
         }
 
+        ShakeAppPreferences prefs = new ShakeAppPreferences(this);
+        int timeZone = prefs.getUtcTime() ? 0 : ROMANIA_TIME_ZONE;
+
         setupIconsTypeFace();
-        displayQuakeDetails(quake);
+        displayQuakeDetails(quake, timeZone);
     }
 
     @Override
@@ -120,7 +124,7 @@ public class DetailActivity extends ActionBarActivity {
         iconLocation.setTypeface(iconFont);
     }
 
-    private void displayQuakeDetails (QuakeObject quake) {
+    private void displayQuakeDetails (QuakeObject quake, int timeZone) {
         // Instantiate views
         TextView detailRegion = (TextView) findViewById(R.id.detailRegion);
         TextView detailMagnitude = (TextView) findViewById(R.id.detailMagnitude);
@@ -133,8 +137,8 @@ public class DetailActivity extends ActionBarActivity {
         detailRegion.setText(quake.getRegion());
         detailMagnitude.setText(String.valueOf(quake.getMagnitude()) + " Richter scale");
         detailDepth.setText(String.valueOf(quake.getDepth()) + " KM depth");
-        detailDate.setText(Utils.formatDate(quake.getTime()));
-        detailTime.setText(Utils.formatTime(quake.getTime()));
+        detailDate.setText(Utils.formatDate(quake.getTime() + timeZone));
+        detailTime.setText(Utils.formatTime(quake.getTime() + timeZone));
         detailLatitude.setText(String.valueOf(quake.getLatitude()) + " Lat");
         detailLongitude.setText(String.valueOf(quake.getLongitude()) + " Lng");
     }
