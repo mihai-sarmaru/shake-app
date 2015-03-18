@@ -18,12 +18,19 @@ import java.util.List;
 public class QuakeListAdapter extends RecyclerView.Adapter<QuakeListAdapter.ViewHolder> {
 
     private static final String QUAKEID = "QUAKEID";
+    private static final int ROMANIA_TIME_ZONE = 1000 * 3600 * 2;
+
     private static List<QuakeObject> quakeList;
     private static Context context;
+    private static ShakeAppPreferences prefs;
+    private static int timeZone;
 
     public QuakeListAdapter (List<QuakeObject> quakeObjectList, Context appContext) {
         this.quakeList = quakeObjectList;
         context = appContext;
+
+        prefs = new ShakeAppPreferences(context);
+        timeZone = getUtc(prefs);
     }
 
     @Override
@@ -39,10 +46,9 @@ public class QuakeListAdapter extends RecyclerView.Adapter<QuakeListAdapter.View
         viewHolder.magnitudeView.setCircleText(String.valueOf(quakeList.get(i).getMagnitude()));
 
         viewHolder.regionTV.setText(quakeList.get(i).getRegion());
-        viewHolder.dateTV.setText(Utils.formatDateShort(quakeList.get(i).getTime()));
-        viewHolder.timeTV.setText(Utils.formatTimeShort(quakeList.get(i).getTime()));
+        viewHolder.dateTV.setText(Utils.formatDateShort(quakeList.get(i).getTime() + timeZone));
+        viewHolder.timeTV.setText(Utils.formatTimeShort(quakeList.get(i).getTime() + timeZone));
 
-        ShakeAppPreferences prefs = new ShakeAppPreferences(context);
         if (prefs.getLatestDatabaseId() > 0 && quakeList.get(i).getId() > prefs.getLatestDatabaseId()) {
             viewHolder.regionTV.setTypeface(null, Typeface.BOLD);
         }
@@ -81,6 +87,10 @@ public class QuakeListAdapter extends RecyclerView.Adapter<QuakeListAdapter.View
             detailIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(detailIntent);
         }
+    }
+
+    private static int getUtc (ShakeAppPreferences prefs) {
+        return prefs.getUtcTime() ? 0 : ROMANIA_TIME_ZONE;
     }
 
     private static int getMagnitudeColor (double magnitude) {
