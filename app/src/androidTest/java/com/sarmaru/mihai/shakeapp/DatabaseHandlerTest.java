@@ -60,6 +60,12 @@ public class DatabaseHandlerTest extends InstrumentationTestCase {
         assertEquals(quake.getId(), latestQuakeId);
     }
 
+    public void testDatabaseHandlerLatestQuakesList () {
+        DatabaseHandler db = new DatabaseHandler(getInstrumentation().getTargetContext());
+        List<QuakeObject> quakeList = db.getLatestQuakesList(0);
+        assertTrue(quakeList.size() > 0);
+    }
+
     public void testDatabaseHandlerClearAllQuakes () {
         DatabaseHandler db = new DatabaseHandler(getInstrumentation().getTargetContext());
         assertEquals(true, db.clearAllQuakes());
