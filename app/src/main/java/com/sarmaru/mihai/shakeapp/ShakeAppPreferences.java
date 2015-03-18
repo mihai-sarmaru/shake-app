@@ -21,6 +21,9 @@ public class ShakeAppPreferences {
     private static final String PREF_UTC = "utcTime";
     private static final boolean PREF_DEFAULT_UTC = false;
 
+    private static final String PREF_MAGNITUDE = "NotificationMagnitude";
+    private static final int PREF_DEFAULT_MAGNITUDE = 0;
+
     public ShakeAppPreferences (Context context) {
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
     }
@@ -47,5 +50,13 @@ public class ShakeAppPreferences {
 
     public void setUtcTime (boolean useUtcTime) {
         prefs.edit().putBoolean(PREF_UTC, useUtcTime).apply();
+    }
+
+    public int getMagnitude () {
+        return prefs.getInt(PREF_MAGNITUDE, PREF_DEFAULT_MAGNITUDE);
+    }
+
+    public void setMagnitude (int magnitude) {
+        prefs.edit().putInt(PREF_MAGNITUDE, magnitude).apply();
     }
 }
