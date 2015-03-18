@@ -23,6 +23,7 @@ public class QuakeNotificationsTest extends InstrumentationTestCase {
 
     private int multipleLastQuakeId = 0;
     private int singleLastQuakeId = 0;
+    private int noLastQuakeId = 0;
 
     public void testQuakeNotificationsMultipleEvents () {
         QuakeNotificationsSubclass notificationClass = getQuakeNotificationsSubclass(multipleLastQuakeId, noMagnitude);
@@ -57,6 +58,14 @@ public class QuakeNotificationsTest extends InstrumentationTestCase {
         assertTrue(notificationClass.content.contains("02:46"));
     }
 
+    public void testQuakeNotificationsNoEvents () {
+        QuakeNotificationsSubclass notificationClass = getQuakeNotificationsSubclass(noLastQuakeId, noMagnitude);
+
+        assertNull(notificationClass.title);
+        assertNull(notificationClass.content);
+        assertNull(notificationClass.notificationIntent);
+    }
+
     private QuakeNotificationsSubclass getQuakeNotificationsSubclass(int lastQuakeId, int magnitude) {
         QuakeNotificationsSubclass notificationClass = new QuakeNotificationsSubclass(getInstrumentation().getTargetContext());
         List<QuakeObject> notificationQuakeList = notificationClass.getLatestQuakeObjects(lastQuakeId);
@@ -86,6 +95,7 @@ public class QuakeNotificationsTest extends InstrumentationTestCase {
         quakeList = db.getQuakeList();
         singleLastQuakeId= quakeList.get(1).getId();
         multipleLastQuakeId= quakeList.get(4).getId();
+        noLastQuakeId= quakeList.get(0).getId();
     }
 
     private void insertQuakeList(DatabaseHandler db) {
