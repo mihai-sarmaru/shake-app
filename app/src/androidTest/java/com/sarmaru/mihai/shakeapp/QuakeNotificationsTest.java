@@ -21,14 +21,26 @@ public class QuakeNotificationsTest extends InstrumentationTestCase {
     private int maxMagnitude = 4;
     private int lastQuakeId = 0;
 
-    public void testQuakeNotificationsNoMagnitude () {
+    public void testQuakeNotificationsMultipleEvents () {
         QuakeNotificationsSubclass notificationClass = getQuakeNotificationsSubclass(noMagnitude);
 
         assertNotNull(notificationClass.title);
         assertNotNull(notificationClass.content);
         assertNotNull(notificationClass.notificationIntent);
+        assertTrue(notificationClass.title.equals("4 New Earthquakes"));
 
-        // TODO Add additional assertions
+        notificationClass = getQuakeNotificationsSubclass(minMagnitude);
+
+        assertNotNull(notificationClass.title);
+        assertNotNull(notificationClass.content);
+        assertNotNull(notificationClass.notificationIntent);
+        assertTrue(notificationClass.title.equals("2 New Earthquakes"));
+
+        notificationClass = getQuakeNotificationsSubclass(maxMagnitude);
+
+        assertNull(notificationClass.title);
+        assertNull(notificationClass.content);
+        assertNull(notificationClass.notificationIntent);
     }
 
     private QuakeNotificationsSubclass getQuakeNotificationsSubclass(int magnitude) {
