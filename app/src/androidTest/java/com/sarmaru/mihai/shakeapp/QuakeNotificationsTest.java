@@ -16,34 +16,48 @@ import java.util.List;
 public class QuakeNotificationsTest extends InstrumentationTestCase {
 
     private List<QuakeObject> quakeList;
+
     private int noMagnitude = 0;
     private int minMagnitude = 3;
     private int maxMagnitude = 4;
-    private int lastQuakeId = 0;
+
+    private int multipleLastQuakeId = 0;
+    private int singleLastQuakeId = 0;
 
     public void testQuakeNotificationsMultipleEvents () {
-        QuakeNotificationsSubclass notificationClass = getQuakeNotificationsSubclass(noMagnitude);
+        QuakeNotificationsSubclass notificationClass = getQuakeNotificationsSubclass(multipleLastQuakeId, noMagnitude);
 
         assertNotNull(notificationClass.title);
         assertNotNull(notificationClass.content);
         assertNotNull(notificationClass.notificationIntent);
         assertTrue(notificationClass.title.equals("4 New Earthquakes"));
 
-        notificationClass = getQuakeNotificationsSubclass(minMagnitude);
+        notificationClass = getQuakeNotificationsSubclass(multipleLastQuakeId, minMagnitude);
 
         assertNotNull(notificationClass.title);
         assertNotNull(notificationClass.content);
         assertNotNull(notificationClass.notificationIntent);
         assertTrue(notificationClass.title.equals("2 New Earthquakes"));
 
-        notificationClass = getQuakeNotificationsSubclass(maxMagnitude);
+        notificationClass = getQuakeNotificationsSubclass(multipleLastQuakeId, maxMagnitude);
 
         assertNull(notificationClass.title);
         assertNull(notificationClass.content);
         assertNull(notificationClass.notificationIntent);
     }
 
-    private QuakeNotificationsSubclass getQuakeNotificationsSubclass(int magnitude) {
+    public void testQuakeNotificationsSingleEvent () {
+        QuakeNotificationsSubclass notificationClass = getQuakeNotificationsSubclass(singleLastQuakeId, noMagnitude);
+
+        assertNotNull(notificationClass.title);
+        assertNotNull(notificationClass.content);
+        assertNotNull(notificationClass.notificationIntent);
+        assertTrue(notificationClass.title.contains("2.4"));
+        assertTrue(notificationClass.title.contains("Zona seismica Vrancea"));
+        assertTrue(notificationClass.content.contains("02:46"));
+    }
+
+    private QuakeNotificationsSubclass getQuakeNotificationsSubclass(int lastQuakeId, int magnitude) {
         QuakeNotificationsSubclass notificationClass = new QuakeNotificationsSubclass(getInstrumentation().getTargetContext());
         List<QuakeObject> notificationQuakeList = notificationClass.getLatestQuakeObjects(lastQuakeId);
         notificationQuakeList = notificationClass.parseMagnitude(notificationQuakeList, magnitude);
@@ -70,7 +84,8 @@ public class QuakeNotificationsTest extends InstrumentationTestCase {
         }
 
         quakeList = db.getQuakeList();
-        lastQuakeId = quakeList.get(4).getId();
+        singleLastQuakeId= quakeList.get(1).getId();
+        multipleLastQuakeId= quakeList.get(4).getId();
     }
 
     private void insertQuakeList(DatabaseHandler db) {
