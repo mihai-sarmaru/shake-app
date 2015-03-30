@@ -21,6 +21,17 @@ public class ShakeAppPreferencesTest extends InstrumentationTestCase {
         assertFalse(prefs.isServiceDone());
     }
 
+    public void testNotificationsPreferences () {
+        ShakeAppPreferences prefs = new ShakeAppPreferences(getInstrumentation().getTargetContext());
+
+        prefs.setNotifications(false);
+        assertFalse(prefs.getNotifications());
+
+        // Reset preference to default
+        prefs.setNotifications(true);
+        assertTrue(prefs.getNotifications());
+    }
+
     public void testLatestDatabaseIdPreferences () {
         ShakeAppPreferences prefs = new ShakeAppPreferences(getInstrumentation().getTargetContext());
 

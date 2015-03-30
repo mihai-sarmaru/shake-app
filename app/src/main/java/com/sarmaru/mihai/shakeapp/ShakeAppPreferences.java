@@ -15,6 +15,9 @@ public class ShakeAppPreferences {
     private static final String PREF_SERVICE = "service";
     private static final boolean PREF_DEFAULT_SERVICE = false;
 
+    private static final String PREF_NOTIFICATIONS = "quakeNotifications";
+    private static final boolean PREF_DEFAULT_NOTIFICATIONS = true;
+
     private static final String PREF_DATABASE_LATEST_ID = "databaseLatestId";
     private static final int PREF_DEFAULT_DATABASE_LATEST_ID = 0;
 
@@ -27,6 +30,14 @@ public class ShakeAppPreferences {
 
     public boolean isServiceDone () {
         return prefs.getBoolean(PREF_SERVICE, PREF_DEFAULT_SERVICE);
+    }
+
+    public boolean getNotifications () {
+        return prefs.getBoolean(PREF_NOTIFICATIONS, PREF_DEFAULT_NOTIFICATIONS);
+    }
+
+    public void setNotifications (boolean showNotifications) {
+        prefs.edit().putBoolean(PREF_NOTIFICATIONS, showNotifications).apply();
     }
 
     public void setServiceDone (boolean done) {
