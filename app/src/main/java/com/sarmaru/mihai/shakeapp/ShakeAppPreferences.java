@@ -18,6 +18,9 @@ public class ShakeAppPreferences {
     private static final String PREF_DATABASE_LATEST_ID = "databaseLatestId";
     private static final int PREF_DEFAULT_DATABASE_LATEST_ID = 0;
 
+    private static final String PREF_MAGNITUDE = "NotificationMagnitude";
+    private static final int PREF_DEFAULT_MAGNITUDE = 0;
+
     public ShakeAppPreferences (Context context) {
         prefs = PreferenceManager.getDefaultSharedPreferences(context);
     }
@@ -36,5 +39,13 @@ public class ShakeAppPreferences {
 
     public void setLatestDatabaseId (int latestId) {
         prefs.edit().putInt(PREF_DATABASE_LATEST_ID, latestId).apply();
+    }
+
+    public int getMagnitude () {
+        return prefs.getInt(PREF_MAGNITUDE, PREF_DEFAULT_MAGNITUDE);
+    }
+
+    public void setMagnitude (int magnitude) {
+        prefs.edit().putInt(PREF_MAGNITUDE, magnitude).apply();
     }
 }
