@@ -8,16 +8,28 @@ import android.test.InstrumentationTestCase;
 public class ShakeAppPreferencesTest extends InstrumentationTestCase {
 
     private int id = 30316;
+    private int magnitude = 3;
 
     public void testServicePreferences () {
         ShakeAppPreferences prefs = new ShakeAppPreferences(getInstrumentation().getTargetContext());
 
         prefs.setServiceDone(true);
-        assertEquals(true, prefs.isServiceDone());
+        assertTrue(prefs.isServiceDone());
 
         // Reset preference to default
         prefs.setServiceDone(false);
-        assertEquals(false, prefs.isServiceDone());
+        assertFalse(prefs.isServiceDone());
+    }
+
+    public void testNotificationsPreferences () {
+        ShakeAppPreferences prefs = new ShakeAppPreferences(getInstrumentation().getTargetContext());
+
+        prefs.setNotifications(false);
+        assertFalse(prefs.getNotifications());
+
+        // Reset preference to default
+        prefs.setNotifications(true);
+        assertTrue(prefs.getNotifications());
     }
 
     public void testLatestDatabaseIdPreferences () {
@@ -29,5 +41,16 @@ public class ShakeAppPreferencesTest extends InstrumentationTestCase {
         // Reset preference to default
         prefs.setLatestDatabaseId(0);
         assertEquals(0, prefs.getLatestDatabaseId());
+    }
+
+    public void testNotificationMagnitudePreferences () {
+        ShakeAppPreferences prefs = new ShakeAppPreferences(getInstrumentation().getTargetContext());
+
+        prefs.setMagnitude(magnitude);
+        assertEquals(magnitude, prefs.getMagnitude());
+
+        // Reset preference to default
+        prefs.setMagnitude(1);
+        assertEquals(1, prefs.getMagnitude());
     }
 }

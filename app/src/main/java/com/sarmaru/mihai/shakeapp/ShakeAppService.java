@@ -12,6 +12,7 @@ import java.util.List;
 public class ShakeAppService extends IntentService {
 
     private static String URL_KEY = "url";
+    ShakeAppPreferences prefs;
 
     // super(name) - Used to name the worker thread, important only for debugging
     public ShakeAppService() {
@@ -20,6 +21,7 @@ public class ShakeAppService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
+        prefs = new ShakeAppPreferences(getApplicationContext());
         DatabaseHandler db = new DatabaseHandler(getApplicationContext());
 
         HttpHandler handler = new HttpHandler(intent.getExtras().getString(URL_KEY));
@@ -33,6 +35,11 @@ public class ShakeAppService extends IntentService {
             if (parser.getLatestQuake().getId() != db.getLatestQuakeObject().getId()) {
                 insertQuakesIntoDatabase(db, quakeList);
                 retainLatestQuakeId(latestDatabaseQuakeId);
+
+                // Notify user of new events
+                if (prefs.getNotifications()) {
+                    throwNotification(latestDatabaseQuakeId);
+                }
             }
         } else {
             insertQuakesIntoDatabase(db, quakeList);
@@ -52,12 +59,15 @@ public class ShakeAppService extends IntentService {
     }
 
     private void serviceDone () {
-        ShakeAppPreferences prefs = new ShakeAppPreferences(getApplicationContext());
         prefs.setServiceDone(true);
     }
 
     private void retainLatestQuakeId (int latestId) {
-        ShakeAppPreferences prefs = new ShakeAppPreferences(getApplicationContext());
         prefs.setLatestDatabaseId(latestId);
+    }
+
+    private void throwNotification (int lastQuakeId) {
+        QuakeNotifications notifications = new QuakeNotifications(getApplicationContext());
+        notifications.startNotification(lastQuakeId, prefs.getMagnitude());
     }
 }
