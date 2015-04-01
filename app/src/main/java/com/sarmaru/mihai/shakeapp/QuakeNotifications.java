@@ -76,7 +76,8 @@ public class QuakeNotifications {
         NotificationCompat.Builder notification = new NotificationCompat.Builder(context)
                 .setSmallIcon(R.drawable.ic_launcher)
                 .setContentTitle(title)
-                .setContentText(content);
+                .setContentText(content)
+                .setAutoCancel(true);
 
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         notification.setContentIntent(pendingIntent);
