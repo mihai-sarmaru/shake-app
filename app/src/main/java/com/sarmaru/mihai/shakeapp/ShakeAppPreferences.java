@@ -22,7 +22,7 @@ public class ShakeAppPreferences {
     private static final int PREF_DEFAULT_DATABASE_LATEST_ID = 0;
 
     private static final String PREF_MAGNITUDE = "NotificationMagnitude";
-    private static final int PREF_DEFAULT_MAGNITUDE = 0;
+    private static final int PREF_DEFAULT_MAGNITUDE = 1;
 
     public ShakeAppPreferences (Context context) {
         prefs = PreferenceManager.getDefaultSharedPreferences(context);

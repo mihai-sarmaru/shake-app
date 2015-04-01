@@ -50,7 +50,7 @@ public class ShakeAppPreferencesTest extends InstrumentationTestCase {
         assertEquals(magnitude, prefs.getMagnitude());
 
         // Reset preference to default
-        prefs.setMagnitude(0);
-        assertEquals(0, prefs.getMagnitude());
+        prefs.setMagnitude(1);
+        assertEquals(1, prefs.getMagnitude());
     }
 }
