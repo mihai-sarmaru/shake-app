@@ -22,5 +22,6 @@
     <string name="iconTime">&#xf017;</string>
     <string name="iconLocation">&#xf041;</string>
     <string name="notification_new_quakes">" New Earthquakes"</string>
+    <string name="notification_new_quakes_magnitudes">"Magnitudes: "</string>
 
 </resources>

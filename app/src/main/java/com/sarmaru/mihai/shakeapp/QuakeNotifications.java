@@ -64,6 +64,7 @@ public class QuakeNotifications {
             for (QuakeObject quake : quakeList) {
                 content = content + String.valueOf(quake.getMagnitude()) + "   ";
             }
+            content = context.getString(R.string.notification_new_quakes_magnitudes) + content;
         }
     }
 
